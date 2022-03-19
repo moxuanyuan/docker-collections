@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    environment:
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_LABEL_ENABLE=true
+      - WATCHTOWER_INCLUDE_RESTARTING=true
+      - WATCHTOWER_SCHEDULE=0 0 4 * * *
+      - TZ=Asia/Shanghai
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true 
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      
+networks:
+  default:
+    name: app
+    driver: bridge

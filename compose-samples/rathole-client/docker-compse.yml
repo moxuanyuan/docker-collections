@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  rathole-client:
+    image: bjg96/rathole
+    container_name: rathole-client
+    command: ["--client", "/app/client.toml"]
+    environment:
+      - TZ=Asia/Shanghai      
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true" 
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - path/to/client.toml:/app/client.toml
+
+networks:
+  default:
+    name: app
+    driver: bridge  

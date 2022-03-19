@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  subconverter:
+    image: tindy2013/subconverter
+    container_name: subconverter 
+    environment:
+      - TZ=Asia/Shanghai      
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    ports:
+      - 25500:25500
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+
+networks:
+  default:
+    name: app
+    driver: bridge

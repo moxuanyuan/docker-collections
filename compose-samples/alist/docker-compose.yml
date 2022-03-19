@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  alist:
+    image: xhofe/alist
+    container_name: alist 
+    environment:  
+      - TZ=Asia/Shanghai
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true" 
+    ports:
+      - 5244:5244 
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - /etc/alist:/opt/alist/data
+      
+networks:
+  default:
+    name: app
+    driver: bridge
