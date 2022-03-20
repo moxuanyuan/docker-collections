@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  sshwifty:
+    image: niruix/sshwifty
+    container_name: sshwifty
+    environment:
+      - SSHWIFTY_SHAREDKEY=WEB_ACCESS_PASSWORD     
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    ports:
+      - 8182:8182
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro
+
+networks:
+  default:
+    name: app
+    driver: bridge
