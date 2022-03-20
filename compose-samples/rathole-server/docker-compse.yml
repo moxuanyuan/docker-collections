@@ -4,7 +4,7 @@ services:
   rathole-server:
     image: rapiz1/rathole
     container_name: rathole-server
-    command: ["--server", "/app/server.toml"]    
+    command: ["--server", "/app/config.toml"]    
     labels:
       - "com.centurylinklabs.watchtower.enable=true" 
     ports:
@@ -15,7 +15,7 @@ services:
       - no-new-privileges:true
     volumes:
       - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro
-      - path/to/server.toml:/app/server.toml 
+      - path/to/config.toml:/app/config.toml 
       
 networks:
   default:

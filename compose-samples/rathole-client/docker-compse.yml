@@ -2,9 +2,9 @@ version: "3"
 
 services:
   rathole-client:
-    image: bjg96/rathole
+    image: rapiz1/rathole
     container_name: rathole-client
-    command: ["--client", "/app/client.toml"] 
+    command: ["--client", "/app/config.toml"] 
     labels:
       - "com.centurylinklabs.watchtower.enable=true" 
     restart: unless-stopped
@@ -12,7 +12,7 @@ services:
       - no-new-privileges:true
     volumes:
       - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro
-      - path/to/client.toml:/app/client.toml
+      - path/to/config.toml:/app/config.toml
 
 networks:
   default:
