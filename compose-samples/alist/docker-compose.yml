@@ -4,8 +4,6 @@ services:
   alist:
     image: xhofe/alist
     container_name: alist 
-    environment:  
-      - TZ=Asia/Shanghai
     labels:
       - "com.centurylinklabs.watchtower.enable=true" 
     ports:
@@ -14,6 +12,7 @@ services:
     security_opt:
       - no-new-privileges:true
     volumes:
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro
       - /etc/alist:/opt/alist/data
       
 networks:
