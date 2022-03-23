@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  aapanel:
+    image: aapanel/aapanel
+    container_name: aapanel
+    environment:
+      - TZ=Asia/Shanghai  
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true" 
+    ports:
+      - 8886:8888
+      - 22:21
+      - 443:443
+      - 80:80
+      - 889:888
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    user: 1000:1000 # UID:GID
+    volumes:
+      - website_data:/www/wwwroot
+      - mysql_data:/www/server/data
+      - vhost_data:/www/server/panel/vhost
+      - backup_data:/www/backup
+      
+networks:
+  default:
+    name: app
+    driver: bridge
