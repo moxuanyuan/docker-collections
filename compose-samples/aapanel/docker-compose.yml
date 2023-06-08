@@ -9,22 +9,22 @@ services:
     labels:
       - "com.centurylinklabs.watchtower.enable=true" 
     ports:
-      - 8886:8888
+      - 8886:7800
       - 22:21
       - 443:443
       - 80:80
       - 889:888
     restart: unless-stopped
     security_opt:
-      - no-new-privileges:true
-    user: 1000:1000 # UID:GID
+      - no-new-privileges:true 
     volumes:
-      - website_data:/www/wwwroot
-      - mysql_data:/www/server/data
-      - vhost_data:/www/server/panel/vhost
-      - backup_data:/www/backup
+      - aapanel:/www
       
+volumes:
+  aapanel:
+    name: aapanel-www
+
 networks:
   default:
-    name: app
-    driver: bridge
+    name: app 
+    external: true   
