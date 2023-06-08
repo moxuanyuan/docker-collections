@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 
 services:
   nginx-proxy-manager:
@@ -16,10 +16,17 @@ services:
     security_opt:
       - no-new-privileges:true
     volumes:
-      - ./data:/data
-      - ./letsencrypt:/etc/letsencrypt
+      - /etc/localtime:/etc/localtime:ro
+      - npm_data:/data
+      - letsencrypt:/etc/letsencrypt
       
+volumes:
+  npm_data:
+    name: nginx-proxy-manager
+  letsencrypt:
+    name: letsencrypt
+
 networks:
   default:
-    name: app
-    driver: bridge
+    name: app 
+    external: true 
