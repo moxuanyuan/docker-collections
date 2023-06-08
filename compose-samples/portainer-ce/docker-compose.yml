@@ -14,11 +14,22 @@ services:
     security_opt:
       - no-new-privileges:true
     volumes:
+      - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
+
+volumes:
+  portainer_data:
+    name: portainer
 
 networks:
   default:
     name: app
-    driver: bridge      
+    driver: bridge
+    ipam:     
+      driver: default
+      config:
+        - subnet: 172.18.0.0/16
+          gateway: 172.18.0.1
+    attachable: true    
  
