@@ -10,10 +10,10 @@ services:
       - "com.centurylinklabs.watchtower.enable=true" 
     ports:
       - 8886:7800
-      - 22:21
+      - 21:21
       - 443:443
       - 80:80
-      - 889:888
+      - 888:888
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true 
