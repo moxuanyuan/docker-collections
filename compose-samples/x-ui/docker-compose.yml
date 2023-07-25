@@ -2,7 +2,7 @@ version: "3"
 
 services:
   x-ui:
-    image: enwaiax/x-ui
+    image: enwaiax/x-ui:alpha-zh
     container_name: x-ui  
     environment: 
       - TZ=Asia/Shanghai
@@ -14,8 +14,14 @@ services:
     security_opt:
       - no-new-privileges:true 
     volumes:
-      - /path/to/appdata/db:/etc/x-ui
-      - /path/to/appdata/cert:/root/cert
+      - db:/etc/x-ui
+      - cert:/root/cert
+
+volumes:
+  db:
+    name: x-ui-db
+  cert:
+    name: x-ui-cert
 
 networks:
   default:

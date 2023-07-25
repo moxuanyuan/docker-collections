@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  aapanel:
+    image: debian
+    container_name: aapanel-debian
+    environment:
+      - TZ=Asia/Shanghai  
+    restart: always
+    privileged: true 
+    #stdin_open: true
+    #tty: true 
+    entrypoint: /www/start.sh
+    #command: tail -f /dev/null 
+    volumes:  
+      - www:/www  
+       
+volumes:
+  www:
+    name: aapanel-www
+
+networks:
+  default:
+    name: app 
+    external: true

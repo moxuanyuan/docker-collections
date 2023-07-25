@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  chatgpt-next-web:
+    image: yidadaa/chatgpt-next-web 
+    container_name: chatgpt-next-web
+    environment:
+      - TZ=Asia/Shanghai
+      - OPENAI_API_KEY=sk-xxxx
+      - CODE=your-password
+      - BASE_URL=https://chimeragpt.adventblocks.cc
+      - HIDE_USER_API_KEY=1
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    ports:
+      - 3000:3000 
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+
+networks:
+  default:
+    name: app 
+    external: true   
+ 

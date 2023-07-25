@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  debian:
+    image: debian
+    container_name: debian
+    environment:
+      - TZ=Asia/Shanghai  
+    ports:
+      - 7800:7800
+      - 21:21 
+      - 888:888
+    restart: unless-stopped
+    privileged: true 
+    stdin_open: true
+    tty: true
+    volumes:
+      - www:/www
+      
+volumes:
+  www:
+    name: aapanel-www
+
+networks:
+  default:
+    name: app 
+    external: true
