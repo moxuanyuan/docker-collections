@@ -15,8 +15,11 @@ services:
       - no-new-privileges:true
     volumes:
       - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro
-      - path/to/config.toml:/app/config.toml 
-      
+      - rathole_app:/app
+volumes:
+  rathole_app:
+    name: rathole-server
+
 networks:
   default:
     name: app 
